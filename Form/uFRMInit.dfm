@@ -4,8 +4,8 @@ object Form1: TForm1
   BorderIcons = [biMinimize]
   BorderStyle = bsSingle
   Caption = 'Pomodoro'
-  ClientHeight = 160
-  ClientWidth = 263
+  ClientHeight = 166
+  ClientWidth = 282
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -491,7 +491,7 @@ object Form1: TForm1
   end
   object Label2: TLabel
     Left = 87
-    Top = 109
+    Top = 61
     Width = 115
     Height = 23
     Caption = 'Pomodoros:'
@@ -504,7 +504,7 @@ object Form1: TForm1
   end
   object contagem: TLabel
     Left = 225
-    Top = 109
+    Top = 61
     Width = 12
     Height = 23
     Caption = 'o'
@@ -516,17 +516,42 @@ object Form1: TForm1
     ParentFont = False
     Visible = False
   end
+  object Label3: TLabel
+    Left = 87
+    Top = 90
+    Width = 97
+    Height = 23
+    Caption = 'Descanso:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clLime
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object contaReg: TLabel
+    Left = 190
+    Top = 94
+    Width = 10
+    Height = 18
+    Hint = 'Tempo para Descanso'
+    Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clLime
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object TimerProgressivo: TTimer
     OnTimer = TimerProgressivoTimer
-    Left = 96
-    Top = 72
+    Left = 120
   end
   object ImageList1: TImageList
     Height = 70
     ShareImages = True
     Width = 70
-    Left = 192
-    Top = 64
+    Left = 176
     Bitmap = {
       494C010103000800040046004600FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000180100004600000001002000000000004032
@@ -3063,8 +3088,8 @@ object Form1: TForm1
       00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC000
       000000000000000000000000000000000000000000000000000000000000}
   end
-  object TimerRegressivo: TTimer
-    Left = 152
-    Top = 64
+  object TimerRetroceder: TTimer
+    OnTimer = TimerRetrocederTimer
+    Left = 216
   end
 end

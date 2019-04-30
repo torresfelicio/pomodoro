@@ -1,9 +1,11 @@
 object Form1: TForm1
-  Left = 0
-  Top = 0
-  Caption = 'Form1'
-  ClientHeight = 150
-  ClientWidth = 253
+  Left = 1081
+  Top = 487
+  BorderIcons = [biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Pomodoro'
+  ClientHeight = 166
+  ClientWidth = 282
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,7 +13,10 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
+  ShowHint = True
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -19,6 +24,7 @@ object Form1: TForm1
     Top = 32
     Width = 86
     Height = 23
+    Hint = 'Quando der 25 minutos pare e volte em 5 minutos'
     Caption = '00:00:00'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clLime
@@ -32,6 +38,7 @@ object Form1: TForm1
     Top = 8
     Width = 65
     Height = 69
+    Hint = 'Iniciar Contagem'
     Glyph.Data = {
       662A0000424D662A00000000000036000000280000003C0000003C0000000100
       180000000000302A0000C40E0000C40E00000000000000000000FFFFFFFFFFFF
@@ -380,6 +387,7 @@ object Form1: TForm1
     Top = 96
     Width = 42
     Height = 44
+    Hint = 'Zerar Tudo'
     Glyph.Data = {
       360C0000424D360C000000000000360000002800000020000000200000000100
       180000000000000C0000C40E0000C40E00000000000000000000FFFFFFFFFFFF
@@ -483,7 +491,7 @@ object Form1: TForm1
   end
   object Label2: TLabel
     Left = 87
-    Top = 109
+    Top = 61
     Width = 115
     Height = 23
     Caption = 'Pomodoros:'
@@ -496,7 +504,7 @@ object Form1: TForm1
   end
   object contagem: TLabel
     Left = 225
-    Top = 109
+    Top = 61
     Width = 12
     Height = 23
     Caption = 'o'
@@ -508,17 +516,41 @@ object Form1: TForm1
     ParentFont = False
     Visible = False
   end
+  object Label3: TLabel
+    Left = 87
+    Top = 90
+    Width = 97
+    Height = 23
+    Caption = 'Descanso:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clLime
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object contaReg: TLabel
+    Left = 190
+    Top = 94
+    Width = 10
+    Height = 18
+    Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clLime
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object TimerProgressivo: TTimer
     OnTimer = TimerProgressivoTimer
-    Left = 96
-    Top = 72
+    Left = 120
   end
   object ImageList1: TImageList
     Height = 70
     ShareImages = True
     Width = 70
-    Left = 192
-    Top = 64
+    Left = 176
     Bitmap = {
       494C010103000800040046004600FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000180100004600000001002000000000004032
@@ -3055,8 +3087,8 @@ object Form1: TForm1
       00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC000
       000000000000000000000000000000000000000000000000000000000000}
   end
-  object TimerRegressivo: TTimer
-    Left = 152
-    Top = 64
+  object TimerRetroceder: TTimer
+    OnTimer = TimerRetrocederTimer
+    Left = 216
   end
 end

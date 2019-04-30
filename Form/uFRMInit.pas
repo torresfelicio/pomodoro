@@ -16,27 +16,43 @@ type
     Label2: TLabel;
     ImageList1: TImageList;
     contagem: TLabel;
-    TimerRegressivo: TTimer;
+    TimerRetroceder: TTimer;
+    Label3: TLabel;
+    contaReg: TLabel;
     procedure TimerProgressivoTimer(Sender: TObject);
     procedure btnAtivaDesativaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure TimerRetrocederTimer(Sender: TObject);
   private
     { Private declarations }
     TimeOld:TDateTime;
     Click1: boolean;
     cont: integer;
+    tempo: String;
+    function GerarTimer(Data: TDateTime):  String;
   public
     { Public declarations }
   end;
 
 var
   Form1: TForm1;
-
+  validador: Boolean;
 implementation
 
 {$R *.dfm}
+
+function TForm1.GerarTimer(Data: TDateTime):  String;
+var
+  iData1, iData2:  String;
+begin
+  iData1 := TimeToStr(Data);
+  iData2 := TimeToStr( (StrToTime(iData1) - 0.0000115741) );
+  iData1 := iData2;
+
+  Result := iData1;
+end;
 
 procedure TForm1.btnAtivaDesativaClick(Sender: TObject);
 
@@ -46,6 +62,8 @@ procedure TForm1.btnAtivaDesativaClick(Sender: TObject);
 
   case TButton(Sender).Tag of 0:
   begin
+  tempo:='00:05:00';
+  validador:=false;
   Click1:=true;
   TimeOld := Now;
   Label1.Caption := '00:00:00' ;
@@ -57,6 +75,8 @@ procedure TForm1.btnAtivaDesativaClick(Sender: TObject);
   end;
 
 1:begin
+  validador:=true;
+  contaReg.Enabled:=true;
   TimerProgressivo.Enabled := False;
   Caption := '';
   TimeOld := Now;
@@ -84,6 +104,7 @@ begin
   TimerProgressivo.Enabled := False;
   TimeOld:=Now;
   cont:=0;
+  tempo:= '00:05:00';
 end;
 
 procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word;
@@ -99,6 +120,7 @@ begin
   Label1.Caption := '00:00:00' ;
   cont:=0;
   contagem.Caption:='0';
+  contaReg.Caption:='00:00:00';
 end;
 
 procedure TForm1.TimerProgressivoTimer(Sender: TObject);
@@ -110,4 +132,23 @@ begin
 
   end;
 end;
+procedure TForm1.TimerRetrocederTimer(Sender: TObject);
+
+begin
+
+  if (validador=true) and (tempo <>'00:00:00') then begin
+
+       tempo  :=  GerarTimer(StrToTime(tempo));
+       contaReg.Caption:=(tempo);
+  end;
+
+  if tempo = '00:00:00' then begin
+    validador:=false;
+    Beep;
+
+  end;
+
+end;
+
+
 end.
